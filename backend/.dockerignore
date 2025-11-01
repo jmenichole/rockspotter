@@ -1,0 +1,30 @@
+node_modules
+npm-debug.log
+.env
+.env.local
+<<<<<<< HEAD
+.git
+.gitignore
+README.md
+.DS_Store
+uploads
+*.log
+.vscode
+.idea
+coverage
+.nyc_output
+dist
+=======
+.env.development.local
+.env.test.local
+.env.production.local
+.git
+.gitignore
+README.md
+Dockerfile
+.dockerignore
+coverage
+.nyc_output
+uploads/*
+!uploads/.gitkeep
+>>>>>>> origin/main

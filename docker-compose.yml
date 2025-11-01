@@ -1,0 +1,101 @@
+<<<<<<< HEAD
+version: '3.8'
+
+=======
+>>>>>>> origin/main
+services:
+  # MongoDB Database
+  mongodb:
+    image: mongo:7.0
+<<<<<<< HEAD
+    container_name: rock-spotter-mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: rock-spotter
+    volumes:
+      - mongodb_data:/data/db
+=======
+    container_name: rock-spotter-db
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_DATABASE: rock-spotter
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+      - ./scripts/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+>>>>>>> origin/main
+    networks:
+      - rock-spotter-network
+
+  # Backend API
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+<<<<<<< HEAD
+    container_name: rock-spotter-backend
+=======
+    container_name: rock-spotter-api
+>>>>>>> origin/main
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - MONGODB_URI=mongodb://mongodb:27017/rock-spotter
+<<<<<<< HEAD
+      - JWT_SECRET=${JWT_SECRET:-change-this-secret-in-production}
+=======
+      - JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
+      - UPLOAD_PATH=/app/uploads
+      - MAX_FILE_SIZE=5242880
+    volumes:
+      - uploads_data:/app/uploads
+>>>>>>> origin/main
+    depends_on:
+      - mongodb
+    networks:
+      - rock-spotter-network
+<<<<<<< HEAD
+    volumes:
+      - ./backend/uploads:/app/uploads
+=======
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Frontend Web App
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: rock-spotter-web
+    restart: unless-stopped
+    ports:
+      - "3002:80"
+    environment:
+      - VITE_API_URL=http://localhost:3000/api
+    depends_on:
+      - backend
+    networks:
+      - rock-spotter-network
+>>>>>>> origin/main
+
+volumes:
+  mongodb_data:
+    driver: local
+<<<<<<< HEAD
+=======
+  uploads_data:
+    driver: local
+>>>>>>> origin/main
+
+networks:
+  rock-spotter-network:
+    driver: bridge

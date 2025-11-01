@@ -1,0 +1,25 @@
+version: "1"
+services:
+  - type: web
+    name: rock-spotter-api
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: MONGODB_URI
+        fromDatabase:
+          name: rock-spotter-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+        
+databases:
+  - name: rock-spotter-db
+    databaseName: rock-spotter
+    user: rockspotter

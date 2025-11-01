@@ -1,0 +1,42 @@
+{
+  "name": "frontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "start": "vite",
+    "build:prod": "vite build",
+    "serve": "vite preview --port 3001",
+    "docker:build": "docker build -t rock-spotter-frontend .",
+    "docker:run": "docker run -p 3001:80 rock-spotter-frontend"
+  },
+  "dependencies": {
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-router-dom": "^7.0.2",
+    "axios": "^1.7.7",
+    "lucide-react": "^0.468.0",
+    "clsx": "^2.1.1",
+    "vite": "^7.1.7",
+    "@vitejs/plugin-react": "^5.0.4",
+    "tailwindcss": "^3.3.2",
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.24"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.36.0",
+    "@types/react": "^19.1.16",
+    "@types/react-dom": "^19.1.9",
+    "eslint": "^9.36.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.22",
+    "globals": "^16.4.0"
+  }
+}

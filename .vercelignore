@@ -1,0 +1,45 @@
+# Dependencies
+node_modules
+frontend/node_modules
+backend/node_modules
+api/node_modules
+
+# Build artifacts (will be rebuilt by Vercel)
+frontend/dist
+
+# Environment files (set in Vercel dashboard)
+.env
+.env.*
+!.env.example
+backend/.env
+frontend/.env
+
+# Development files
+*.log
+npm-debug.log*
+.DS_Store
+
+# Docker files
+Dockerfile
+docker-compose.yml
+.dockerignore
+*.docker
+
+# Documentation
+*.md
+!README.md
+
+# Scripts
+*.sh
+scripts/
+
+# Test files
+test-*.js
+*diagnostic.js
+
+# Mobile app (not needed for web deployment)
+mobile-app/
+
+# Temporary files
+tmp/
+.cache

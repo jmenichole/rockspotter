@@ -1,0 +1,21 @@
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Circular background -->
+  <circle cx="8" cy="8" r="7.5" fill="#1e4d3c"/>
+  
+  <!-- Inner background -->
+  <circle cx="8" cy="8" r="6" fill="#f5f5dc"/>
+  
+  <!-- Mountains -->
+  <path d="M3 10 L5 6 L7 8 L9 5 L11 7 L13 9 L13 12 L3 12 Z" fill="#4a6b5a"/>
+  
+  <!-- Rock -->
+  <g transform="translate(8,10)">
+    <path d="M-1,-2 L1,-2 L2,0 L1,1 L-1,1 L-2,0 Z" fill="#2d5d4a"/>
+  </g>
+  
+  <!-- Star -->
+  <g transform="translate(8,5)">
+    <path d="M0,-1.2 L0.4,0 L0,1.2 L-0.4,0 Z" fill="#1e4d3c"/>
+    <path d="M-1.2,0 L0,0.4 L1.2,0 L0,-0.4 Z" fill="#1e4d3c"/>
+  </g>
+</svg>

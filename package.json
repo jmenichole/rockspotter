@@ -1,0 +1,39 @@
+{
+  "name": "rock-spotter",
+  "version": "1.0.0",
+  "description": "Rock Spotter - A platform for rock enthusiasts to share photos and participate in rock hunts",
+  "scripts": {
+    "build": "cd frontend && npm install && npm run build",
+    "install": "cd frontend && npm install",
+    "dev": "cd frontend && npm run dev",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:build": "docker-compose build",
+    "docker:rebuild": "docker-compose build --no-cache",
+    "docker:logs": "docker-compose logs -f",
+    "docker:logs:backend": "docker-compose logs -f backend",
+    "docker:logs:db": "docker-compose logs -f mongodb",
+    "docker:status": "docker-compose ps",
+    "docker:clean": "docker-compose down -v --rmi all",
+    "start": "docker-compose up -d",
+    "stop": "docker-compose down",
+    "dev:backend": "cd backend && npm run dev",
+    "install:backend": "cd backend && npm install"
+  },
+  "keywords": [
+    "rocks",
+    "geology",
+    "photo-sharing",
+    "hunts",
+    "docker"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": "22.x"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "mongoose": "^8.19.1"
+  }
+}

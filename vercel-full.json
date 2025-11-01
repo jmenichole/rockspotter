@@ -1,0 +1,25 @@
+{
+  "build": {
+    "builder": "@vercel/static-build",
+    "config": {
+      "distDir": "frontend/dist"
+    }
+  },
+  "functions": {
+    "api/**/*.js": {
+      "runtime": "@vercel/node"
+    }
+  },
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/frontend/dist/$1"
+    }
+  ],
+  "buildCommand": "cd frontend && npm install && npm run build",
+  "installCommand": "npm install && cd api && npm install && cd ../frontend && npm install"
+}
