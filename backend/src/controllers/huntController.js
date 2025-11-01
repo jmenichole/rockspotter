@@ -8,6 +8,7 @@
 
 const Hunt = require('../models/Hunt');
 const User = require('../models/User');
+const { handleError } = require('../utils/errorHandler');
 
 // Create a new hunt
 exports.createHunt = async (req, res) => {
@@ -32,13 +33,7 @@ exports.createHunt = async (req, res) => {
       hunt
     });
   } catch (error) {
-    // Handle validation errors
-    if (error.name === 'ValidationError') {
-      return res.status(400).json({ error: error.message });
-    }
-    
-    // Handle other errors
-    res.status(500).json({ error: error.message });
+    handleError(error, res);
   }
 };
 
@@ -254,13 +249,7 @@ exports.updateHunt = async (req, res) => {
 
     res.json({ message: 'Hunt updated successfully', hunt });
   } catch (error) {
-    // Handle validation errors
-    if (error.name === 'ValidationError') {
-      return res.status(400).json({ error: error.message });
-    }
-    
-    // Handle other errors
-    res.status(500).json({ error: error.message });
+    handleError(error, res);
   }
 };
 

@@ -10,6 +10,7 @@
 
 const Rock = require('../models/Rock');
 const User = require('../models/User');
+const { handleError } = require('../utils/errorHandler');
 
 // Create a new rock post
 exports.createRock = async (req, res) => {
@@ -37,13 +38,7 @@ exports.createRock = async (req, res) => {
       rock
     });
   } catch (error) {
-    // Handle validation errors
-    if (error.name === 'ValidationError') {
-      return res.status(400).json({ error: error.message });
-    }
-    
-    // Handle other errors
-    res.status(500).json({ error: error.message });
+    handleError(error, res);
   }
 };
 
@@ -172,13 +167,7 @@ exports.addComment = async (req, res) => {
       comment: rock.comments[rock.comments.length - 1]
     });
   } catch (error) {
-    // Handle validation errors
-    if (error.name === 'ValidationError') {
-      return res.status(400).json({ error: error.message });
-    }
-    
-    // Handle other errors
-    res.status(500).json({ error: error.message });
+    handleError(error, res);
   }
 };
 
@@ -209,13 +198,7 @@ exports.updateRock = async (req, res) => {
 
     res.json({ message: 'Rock updated successfully', rock });
   } catch (error) {
-    // Handle validation errors
-    if (error.name === 'ValidationError') {
-      return res.status(400).json({ error: error.message });
-    }
-    
-    // Handle other errors
-    res.status(500).json({ error: error.message });
+    handleError(error, res);
   }
 };
 
