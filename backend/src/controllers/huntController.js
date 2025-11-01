@@ -61,7 +61,7 @@ exports.getHunts = async (req, res) => {
       currentPage: page
     });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    handleError(error, res);
   }
 };
 
@@ -79,7 +79,7 @@ exports.getHuntById = async (req, res) => {
 
     res.json({ hunt });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    handleError(error, res);
   }
 };
 
@@ -121,7 +121,7 @@ exports.joinHunt = async (req, res) => {
 
     res.json({ message: 'Joined hunt successfully', hunt });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    handleError(error, res);
   }
 };
 
@@ -179,7 +179,7 @@ exports.markRockFound = async (req, res) => {
       }
     });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    handleError(error, res);
   }
 };
 
@@ -219,7 +219,7 @@ exports.getMyHunts = async (req, res) => {
 
     res.json({ hunts: myHunts });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    handleError(error, res);
   }
 };
 
@@ -270,6 +270,6 @@ exports.deleteHunt = async (req, res) => {
 
     res.json({ message: 'Hunt deleted successfully' });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    handleError(error, res);
   }
 };

@@ -65,7 +65,7 @@ exports.getRocks = async (req, res) => {
       currentPage: page
     });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    handleError(error, res);
   }
 };
 
@@ -82,7 +82,7 @@ exports.getRockById = async (req, res) => {
 
     res.json({ rock });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    handleError(error, res);
   }
 };
 
@@ -110,7 +110,7 @@ exports.getNearbyRocks = async (req, res) => {
 
     res.json({ rocks });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    handleError(error, res);
   }
 };
 
@@ -140,7 +140,7 @@ exports.likeRock = async (req, res) => {
       likes: rock.likes.length
     });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    handleError(error, res);
   }
 };
 
@@ -220,6 +220,6 @@ exports.deleteRock = async (req, res) => {
 
     res.json({ message: 'Rock deleted successfully' });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    handleError(error, res);
   }
 };
