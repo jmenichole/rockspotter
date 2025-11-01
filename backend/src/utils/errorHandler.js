@@ -21,7 +21,13 @@ exports.handleError = (error, res) => {
   
   // Handle duplicate key errors
   if (error.code === 11000) {
-    const field = error.keyPattern ? Object.keys(error.keyPattern)[0] : 'field';
+    // Try to extract field name from keyPattern or keyValue
+    let field = 'This value';
+    if (error.keyPattern) {
+      field = Object.keys(error.keyPattern)[0];
+    } else if (error.keyValue) {
+      field = Object.keys(error.keyValue)[0];
+    }
     return res.status(400).json({ error: `${field} already exists` });
   }
   
@@ -30,6 +36,7 @@ exports.handleError = (error, res) => {
     return res.status(400).json({ error: 'Invalid ID format' });
   }
   
-  // Handle other errors
-  res.status(500).json({ error: error.message });
+  // Handle other errors - log full error but return generic message
+  console.error('Server error:', error);
+  res.status(500).json({ error: 'An internal server error occurred' });
 };
