@@ -10,6 +10,7 @@
 
 const Rock = require('../models/Rock');
 const User = require('../models/User');
+const { handleError } = require('../utils/errorHandler');
 
 // Create a new rock post
 exports.createRock = async (req, res) => {
@@ -37,7 +38,7 @@ exports.createRock = async (req, res) => {
       rock
     });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    handleError(error, res);
   }
 };
 
@@ -64,7 +65,7 @@ exports.getRocks = async (req, res) => {
       currentPage: page
     });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    handleError(error, res);
   }
 };
 
@@ -81,7 +82,7 @@ exports.getRockById = async (req, res) => {
 
     res.json({ rock });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    handleError(error, res);
   }
 };
 
@@ -109,7 +110,7 @@ exports.getNearbyRocks = async (req, res) => {
 
     res.json({ rocks });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    handleError(error, res);
   }
 };
 
@@ -139,7 +140,7 @@ exports.likeRock = async (req, res) => {
       likes: rock.likes.length
     });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    handleError(error, res);
   }
 };
 
@@ -166,7 +167,7 @@ exports.addComment = async (req, res) => {
       comment: rock.comments[rock.comments.length - 1]
     });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    handleError(error, res);
   }
 };
 
@@ -197,7 +198,7 @@ exports.updateRock = async (req, res) => {
 
     res.json({ message: 'Rock updated successfully', rock });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    handleError(error, res);
   }
 };
 
@@ -219,6 +220,6 @@ exports.deleteRock = async (req, res) => {
 
     res.json({ message: 'Rock deleted successfully' });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    handleError(error, res);
   }
 };

@@ -8,6 +8,7 @@
 
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
+const { handleError } = require('../utils/errorHandler');
 
 // Generate JWT token
 const generateToken = (userId) => {
@@ -51,7 +52,7 @@ exports.register = async (req, res) => {
       token
     });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    handleError(error, res);
   }
 };
 
@@ -88,7 +89,7 @@ exports.login = async (req, res) => {
       token
     });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    handleError(error, res);
   }
 };
 
@@ -98,7 +99,7 @@ exports.getProfile = async (req, res) => {
     const user = await User.findById(req.userId).populate('achievements');
     res.json({ user });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    handleError(error, res);
   }
 };
 
@@ -120,7 +121,7 @@ exports.updateProfile = async (req, res) => {
 
     res.json({ message: 'Profile updated successfully', user });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    handleError(error, res);
   }
 };
 
@@ -137,7 +138,7 @@ exports.getUserById = async (req, res) => {
 
     res.json({ user });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    handleError(error, res);
   }
 };
 
@@ -152,7 +153,7 @@ exports.getAllUsers = async (req, res) => {
     const users = await User.find({}).sort({ createdAt: -1 });
     res.json({ users });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    handleError(error, res);
   }
 };
 
@@ -187,6 +188,6 @@ exports.updateUserRole = async (req, res) => {
       user
     });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    handleError(error, res);
   }
 };
