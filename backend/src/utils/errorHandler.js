@@ -54,6 +54,12 @@ exports.handleError = (error, res) => {
   }
   
   // Handle other errors - log full error but return generic message
-  console.error('Server error:', error);
+  // Only log full error details in development mode
+  if (process.env.NODE_ENV === 'development') {
+    console.error('Server error:', error);
+  } else {
+    // In production, log only essential info without sensitive details
+    console.error('Server error:', error.name, error.message);
+  }
   res.status(500).json({ error: 'An internal server error occurred' });
 };
