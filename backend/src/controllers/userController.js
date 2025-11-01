@@ -51,6 +51,18 @@ exports.register = async (req, res) => {
       token
     });
   } catch (error) {
+    // Handle validation errors
+    if (error.name === 'ValidationError') {
+      return res.status(400).json({ error: error.message });
+    }
+    
+    // Handle duplicate key errors
+    if (error.code === 11000) {
+      const field = Object.keys(error.keyPattern)[0];
+      return res.status(400).json({ error: `${field} already exists` });
+    }
+    
+    // Handle other errors
     res.status(500).json({ error: error.message });
   }
 };
@@ -120,6 +132,18 @@ exports.updateProfile = async (req, res) => {
 
     res.json({ message: 'Profile updated successfully', user });
   } catch (error) {
+    // Handle validation errors
+    if (error.name === 'ValidationError') {
+      return res.status(400).json({ error: error.message });
+    }
+    
+    // Handle duplicate key errors
+    if (error.code === 11000) {
+      const field = Object.keys(error.keyPattern)[0];
+      return res.status(400).json({ error: `${field} already exists` });
+    }
+    
+    // Handle other errors
     res.status(500).json({ error: error.message });
   }
 };

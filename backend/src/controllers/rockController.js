@@ -37,6 +37,12 @@ exports.createRock = async (req, res) => {
       rock
     });
   } catch (error) {
+    // Handle validation errors
+    if (error.name === 'ValidationError') {
+      return res.status(400).json({ error: error.message });
+    }
+    
+    // Handle other errors
     res.status(500).json({ error: error.message });
   }
 };
@@ -166,6 +172,12 @@ exports.addComment = async (req, res) => {
       comment: rock.comments[rock.comments.length - 1]
     });
   } catch (error) {
+    // Handle validation errors
+    if (error.name === 'ValidationError') {
+      return res.status(400).json({ error: error.message });
+    }
+    
+    // Handle other errors
     res.status(500).json({ error: error.message });
   }
 };
@@ -197,6 +209,12 @@ exports.updateRock = async (req, res) => {
 
     res.json({ message: 'Rock updated successfully', rock });
   } catch (error) {
+    // Handle validation errors
+    if (error.name === 'ValidationError') {
+      return res.status(400).json({ error: error.message });
+    }
+    
+    // Handle other errors
     res.status(500).json({ error: error.message });
   }
 };

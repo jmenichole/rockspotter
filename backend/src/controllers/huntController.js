@@ -32,6 +32,12 @@ exports.createHunt = async (req, res) => {
       hunt
     });
   } catch (error) {
+    // Handle validation errors
+    if (error.name === 'ValidationError') {
+      return res.status(400).json({ error: error.message });
+    }
+    
+    // Handle other errors
     res.status(500).json({ error: error.message });
   }
 };
@@ -248,6 +254,12 @@ exports.updateHunt = async (req, res) => {
 
     res.json({ message: 'Hunt updated successfully', hunt });
   } catch (error) {
+    // Handle validation errors
+    if (error.name === 'ValidationError') {
+      return res.status(400).json({ error: error.message });
+    }
+    
+    // Handle other errors
     res.status(500).json({ error: error.message });
   }
 };
